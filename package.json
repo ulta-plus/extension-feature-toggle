@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:ulta-plus/extension-feature-toggle.git"
+    "url": "git+https://github.com/ulta-plus/extension-feature-toggle.git"
   },
   "bugs": {
     "url": "https://github.com/ulta-plus/extension-feature-toggle/issues"
@@ -19,7 +19,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
+  "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }
