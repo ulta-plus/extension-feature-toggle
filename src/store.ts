@@ -51,6 +51,8 @@ export class FeatureToggleStore {
   }
 
   init(options: InitOptions): void {
+    if (this.snapshot.isInitialized || this.snapshot.loading) return;
+
     this.allowedFeatures = options.features;
     this.getConfig = options.getConfig;
     this.getContext = options.getContext;
