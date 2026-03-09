@@ -1,0 +1,26 @@
+{
+  "name": "@ulta-plus/extension-feature-toggle",
+  "version": "1.0.0",
+  "description": "Feature toggle with app version, browser and rollout rules",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:ulta-plus/extension-feature-toggle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ulta-plus/extension-feature-toggle/issues"
+  },
+  "homepage": "https://github.com/ulta-plus/extension-feature-toggle#readme",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}
