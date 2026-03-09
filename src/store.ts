@@ -106,17 +106,17 @@ export class FeatureToggleStore {
     }
   }
 
-  subscribe(listener: () => void): () => void {
+  subscribe = (listener: () => void): () => void => {
     this.listeners.push(listener);
     return () => {
       const i = this.listeners.indexOf(listener);
       if (i !== -1) this.listeners.splice(i, 1);
     };
-  }
+  };
 
-  getSnapshot(): FeatureStoreSnapshot {
+  getSnapshot = (): FeatureStoreSnapshot => {
     return this.snapshot;
-  }
+  };
 
   async getSnapshotAsync(): Promise<FeatureStoreSnapshot> {
     const stored = this.getStorage ? await this.getStorage() : null;
