@@ -50,7 +50,7 @@ export class FeatureToggleStore {
     await this.setStorage(data);
   }
 
-  init(options: InitOptions): void {
+  public async init(options: InitOptions): Promise<void> {
     if (this.snapshot.loading) return;
 
     this.allowedFeatures = options.features;
@@ -59,7 +59,7 @@ export class FeatureToggleStore {
     this.setStorage = options.setStorage;
     this.getStorage = options.getStorage;
 
-    this.runInit();
+    return this.runInit();
   }
 
   private async runInit(): Promise<void> {

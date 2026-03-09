@@ -1,6 +1,6 @@
 {
   "name": "@ulta-plus/extension-feature-toggle",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Feature toggle with app version, browser and rollout rules",
   "license": "MIT",
   "main": "dist/index.js",
