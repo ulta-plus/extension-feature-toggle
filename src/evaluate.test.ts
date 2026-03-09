@@ -6,7 +6,7 @@ const baseContext: EvaluationContext = {
   appVersion: '6.0.0',
   browserName: 'chrome',
   browserVersion: '120.0.0',
-  userId: 'user-1',
+  deviceId: 'user-1',
 };
 
 describe('evaluateRule — empty rule', () => {
@@ -80,21 +80,21 @@ describe('evaluateRule — rollout', () => {
     expect(evaluateRule(rule, baseContext)).toBe(true);
   });
 
-  it('uses userId as seed when userId is provided', () => {
+  it('uses deviceId as seed when deviceId is provided', () => {
     // hashToPercent("") = 0.5381
     // rollout 0.6 > 0.5381 → enabled
     const rule: FeatureRule = { rollout: 0.6 };
-    expect(evaluateRule(rule, { ...baseContext, userId: '' })).toBe(true);
+    expect(evaluateRule(rule, { ...baseContext, deviceId: '' })).toBe(true);
   });
 
   it('excludes user when their hash exceeds rollout', () => {
     // hashToPercent("") = 0.5381
     // rollout 0.5 <= 0.5381 → disabled
     const rule: FeatureRule = { rollout: 0.5 };
-    expect(evaluateRule(rule, { ...baseContext, userId: '' })).toBe(false);
+    expect(evaluateRule(rule, { ...baseContext, deviceId: '' })).toBe(false);
   });
 
-  it('falls back to appVersion + browserName when userId is absent', () => {
+  it('falls back to appVersion + browserName when deviceId is absent', () => {
     const ctx: EvaluationContext = {
       appVersion: '6.0.0',
       browserName: 'chrome',

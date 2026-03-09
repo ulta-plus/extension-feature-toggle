@@ -16,7 +16,7 @@ export interface EvaluationContext {
   appVersion: string;
   browserName: string;
   browserVersion: string;
-  userId?: string;
+  deviceId?: string;
 }
 
 /**
@@ -27,7 +27,7 @@ export interface InitOptions {
   features: string[];
   /** Fetches config from backend. */
   getConfig: () => Promise<FeatureConfigResponse>;
-  /** Returns context (app version, browser, userId). */
+  /** Returns context (app version, browser, deviceId). */
   getContext: () => EvaluationContext;
   /** Persists state (featuresList + featuresListLocal). */
   setStorage: (data: StoredState) => void | Promise<void>;

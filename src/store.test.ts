@@ -6,7 +6,7 @@ const baseContext: EvaluationContext = {
   appVersion: '6.0.0',
   browserName: 'chrome',
   browserVersion: '120.0.0',
-  userId: 'user-1',
+  deviceId: 'user-1',
 };
 
 function makeStore() {

@@ -10,7 +10,7 @@ npm install @ulta-plus/extension-feature-toggle
 
 ## Usage
 
-`getContext` is called by the library when evaluating rules. It must return data from your **Chrome extension environment**: extension version from `chrome.runtime.getManifest()`, browser name and version from your UA/browser detector, and `userId` from your auth if you use rollout.
+`getContext` is called by the library when evaluating rules. It must return data from your **Chrome extension environment**: extension version from `chrome.runtime.getManifest()`, browser name and version from your UA/browser detector, and `deviceId` from your auth if you use rollout.
 
 ```ts
 import { featureStore } from "@ulta-plus/extension-feature-toggle";
@@ -25,7 +25,7 @@ featureStore.init({
       appVersion: manifest.version,
       browserName,
       browserVersion,
-      userId: getUserId(), // from your auth/storage if needed for rollout
+      deviceId: getUserId(), // from your auth/storage if needed for rollout
     };
   },
   setStorage: (data) => chrome.storage.local.set({ featureToggle: data }),
@@ -44,13 +44,13 @@ await featureStore.reset();
 
 ## Config format (backend response)
 
-The **rollout percentage** is set by the backend in each feature rule (`rollout`: 0–1, e.g. `0.5` = 50%). The extension does not pass the percentage; it only passes `userId` (or another stable string) in `getContext()`. The library hashes that and checks if the user falls inside the rolled-out fraction.
+The **rollout percentage** is set by the backend in each feature rule (`rollout`: 0–1, e.g. `0.5` = 50%). The extension does not pass the percentage; it only passes `deviceId` (or another stable string) in `getContext()`. The library hashes that and checks if the user falls inside the rolled-out fraction.
 
 Each feature value: `{ "app-version"?: string, browser?: Record<string, number>, rollout?: number }`.
 
 - `app-version` — min extension version (semver).
 - `browser` — min major per browser, e.g. `{ "chrome": 120, "firefox": 90 }`. If omitted or empty, the feature is enabled for all browsers and versions (no browser filter).
-- `rollout` — fraction 0–1 (0.5 = 50%), **from backend**; extension supplies `userId` in context for the hash. If omitted, the feature is enabled for 100% of users (no rollout filter).
+- `rollout` — fraction 0–1 (0.5 = 50%), **from backend**; extension supplies `deviceId` in context for the hash. If omitted, the feature is enabled for 100% of users (no rollout filter).
 
 **Example: JSON returned by `getConfig()` (backend response):**
 

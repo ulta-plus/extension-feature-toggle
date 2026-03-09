@@ -23,7 +23,7 @@ export function evaluateRule(rule: FeatureRule, context: EvaluationContext): boo
   if (rule.rollout != null) {
     if (rule.rollout <= 0) return false;
     if (rule.rollout < 1) {
-      const seed = context.userId ?? context.appVersion + context.browserName;
+      const seed = context.deviceId ?? context.appVersion + context.browserName;
       const p = hashToPercent(seed);
       if (p >= rule.rollout) return false;
     }
